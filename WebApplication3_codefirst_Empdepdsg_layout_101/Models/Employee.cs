@@ -14,7 +14,9 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101.Models
         [Required]
         public String Address { get; set; }
 
-        public int salary { get; set; }
+        public int Salary { get; set; }
+        
+        
         //public int Edno { get; set; }
         //[ForeignKey("Edno")]
         //public Department Department { get; set; }
