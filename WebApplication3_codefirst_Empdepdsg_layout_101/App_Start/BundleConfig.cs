@@ -25,6 +25,15 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content-superhero/css").Include(
+                      "~/Content/bootstrap-superhero.css",
+                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content-slate/css").Include(
+                      "~/Content/bootstrap-slate.css",
+                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content-cyborg/css").Include(
+                      "~/Content/bootstrap-cyborg.css",
+                      "~/Content/site.css"));
         }
     }
 }

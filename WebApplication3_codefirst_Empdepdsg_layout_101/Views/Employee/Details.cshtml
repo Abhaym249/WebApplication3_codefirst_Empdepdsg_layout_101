@@ -1,4 +1,8 @@
 ﻿@model WebApplication3_codefirst_Empdepdsg_layout_101.Models.Employee
+@{
+     Layout = "~/Views/Shared/_Layout-cyborg.cshtml";
+}
+
 <h2 class="text-primary text-center"></h2>
 <table class="table table-active table-striped table-active">
     <thead>
@@ -20,5 +24,5 @@
         </tr>
     </tbody>
 </table>
-@Html.ActionLink("Edit", "Upsert", new { id = Model.Id}, new { @class = "btn btn-success" })
+@Html.ActionLink("Edit", "Upsert", new { id = Model.Id }, new { @class = "btn btn-success" })
 @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-info" })

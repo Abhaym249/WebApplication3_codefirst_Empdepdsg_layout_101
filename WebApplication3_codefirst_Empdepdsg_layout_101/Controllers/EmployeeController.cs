@@ -55,7 +55,7 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101.Controllers
                 employeeFromDb.DesignationId = employee.DesignationId;
             }
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         public ActionResult Details(int id)
         {
