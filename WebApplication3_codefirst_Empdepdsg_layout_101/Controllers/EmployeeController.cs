@@ -31,7 +31,7 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101.Controllers
             if (id == null) return View(employee);//create
             //edit
             employee = context.Employees.Find(id.GetValueOrDefault());
-            if( employee == null) return HttpNotFound();
+            if (employee == null) return HttpNotFound();
             return View(employee);
         }
         [ValidateAntiForgeryToken]
@@ -39,7 +39,7 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101.Controllers
         public ActionResult Upsert(Employee employee)
         {
             if (employee == null) return HttpNotFound();
-            if(!ModelState.IsValid) return View(employee);
+            if (!ModelState.IsValid) return View(employee);
             if (employee.Id == 0)
             {
                 context.Employees.Add(employee);
@@ -47,13 +47,28 @@ namespace WebApplication3_codefirst_Empdepdsg_layout_101.Controllers
             else
             {
                 var employeeFromDb = context.Employees.Find(employee.Id);
-                if(employeeFromDb == null) return HttpNotFound();
-                employeeFromDb .Name= employee.Name;
+                if (employeeFromDb == null) return HttpNotFound();
+                employeeFromDb.Name = employee.Name;
                 employeeFromDb.Address = employee.Address;
                 employeeFromDb.Salary = employee.Salary;
                 employeeFromDb.DepartmentId = employee.DepartmentId;
                 employeeFromDb.DesignationId = employee.DesignationId;
             }
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Details(int id)
+        {
+            var employeeInDb = context.Employees.Include(e => e.Department).Include(e => e.Designation).FirstOrDefault(e => e.Id == id);
+            if (employeeInDb == null) return HttpNotFound();
+            return View(employeeInDb);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var employeeInDb = context.Employees.Find(id);
+            if (employeeInDb == null) return HttpNotFound();
+            context.Employees.Remove(employeeInDb);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
